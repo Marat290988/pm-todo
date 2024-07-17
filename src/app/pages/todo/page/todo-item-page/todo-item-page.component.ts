@@ -136,7 +136,6 @@ export class TodoItemPageComponent implements OnInit, OnDestroy {
           .pipe(takeUntil(this.takeUntilSubject))
           .subscribe(todo => {
             this.todoItem.next(todo);
-            console.log(todo)
           })
       }
     });
