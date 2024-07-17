@@ -1,0 +1,27 @@
+.new-todo-content {
+  display: flex;
+  gap: 5px;
+
+  .input-wrapper {
+    flex-grow: 1;
+
+    input {
+      width: 100%;
+      background-color: var(--bg-medium);
+      border: 1px solid #fff0;
+      outline: none;
+      color: var(--color);
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+  
+    input.error {
+      border-color: var(--primary-warn);
+    }
+  }
+
+  .new-todo-button {
+    
+  }
+
+}

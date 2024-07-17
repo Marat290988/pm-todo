@@ -1,0 +1,68 @@
+<div
+  class="input-content"
+>
+  @if (inputMode === 'formInput') {
+    @if (label) {
+      <label 
+        [htmlFor]="formName"
+        [ngStyle]="{
+          fontSize: inputStyle.labelFontSize,
+          color: inputStyle.labelFontColor,
+          fontWeight: inputStyle.labelWeight,
+          lineHeight: inputStyle.labelLineHeight,
+        }"
+      >
+        {{ labelText }}
+      </label>
+    }
+    <div
+      class="input-content__wrapper"
+      [ngStyle]="{
+        border: inputStyle.border,
+        padding: inputStyle.padding,
+        borderRadius: inputStyle.borderRadius,
+        fontSize: inputStyle.inputFontSize,
+        color: inputStyle.inputFontColor,
+        fontWeight: inputStyle.inputWeight,
+        backgroundColor: inputStyle.backgroundColor,
+      }"
+    >
+      @if (iconName) {
+        <app-svg-icon
+          [iconName]="iconName"
+          [maxWidth]="inputStyle.iconSize"
+        >
+        </app-svg-icon>
+      }
+      <input
+        [ngClass]="[inputStyle.inputClass ? inputStyle.inputClass : '']"
+        class="cutom-input"
+        [type]="type"
+        [formControl]="control"
+        [id]="formName"
+        [placeholder]="placeholder"
+        autocomplete="off"
+      >
+      @if (checkIcon || showErrorClearBtn) {
+        <div class="icon-wrapper">
+          @if (!control.errors) {
+            <app-svg-icon iconName="check" />
+          }
+          @if (control.errors && control.value && this.control.value !== '') {
+            <app-svg-icon iconName="error-clear" class="icon-pointer" (click)="clearControl()" />
+          }
+        </div>
+      }
+      @if (showPasswordIcon) {
+        <app-svg-icon iconName="password-eye" class="icon-pointer" (click)="togglePassword()" />
+      }
+    </div>
+    @if (showError && errorMessage) {
+      <div class="input-content__error">
+        @if (control.errors && control.value && this.control.value !== '') {
+          <span class="input-content__error-message">{{ errorMessage }}</span>
+        }
+      </div>
+    }
+  }
+</div>

@@ -1,0 +1,37 @@
+<div class="auth-content">
+  <div class="auth-content__inner">
+      <form [formGroup]="loginForm">
+        <app-custom-input
+          ngDefaultControl
+          [formName]="'email'"
+          [label]="'Email'"
+          [checkIcon]="true"
+          [showError]="true"
+          [errorMessage]="'Укажите почту'"
+          [showErrorClearBtn]="true"
+        >
+        </app-custom-input>
+        <app-custom-input
+          ngDefaultControl
+          [formName]="'password'"
+          [label]="'Пароль'"
+          [checkIcon]="true"
+          [showError]="true"
+          [errorMessage]="'Неверный пароль'"
+          [showErrorClearBtn]="true"
+          [type]="'password'"
+        >
+        </app-custom-input>
+        <div class="auth-button">
+          <app-button
+            [disabled]="loginForm.status !== 'VALID' || (isSendingForm$ | async)"
+            [isLoading]="(isSendingForm$ | async)"
+            (click)="onSubmit()"
+          >
+            Войти
+          </app-button>
+        </div>
+      </form>
+
+  </div>
+</div>

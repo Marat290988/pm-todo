@@ -1,0 +1,11 @@
+@mixin size-weight-line($size, $weight, $line) {
+	font-size: $size;
+	font-weight: $weight;
+	line-height: $line;
+}
+
+@mixin flex-direction-gap($direction, $gap) {
+	display: flex;
+	flex-direction: $direction;
+	gap: $gap;
+}

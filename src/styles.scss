@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import 'ngx-toastr/toastr';
+@import url('./mixins.scss');
+
+html {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+
+	* {
+		margin: 0;
+		font-family: 'Roboto', sans-serif;
+	}
+
+	*,
+	*:before,
+	*:after {
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+}
+
+:root {
+	--bg-dark: #1e2938;
+	--bg-medium: #32445c;
+	--color: #ccc;
+	--primary-warn: #f22a2a;
+	--bg-disabled: #59616d;
+}
+
+body {
+  height: 100vh;
+	color: var(--color);
+	background-color: var(--bg-dark);
+}
+
+.toast-container .ngx-toastr {
+	display: flex;
+	flex-direction: column;
+	gap: 10px 0;
+	line-height: 16px;
+	border-radius: 12px;
+}
+
+.toast-title {
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 16px;
+}
+
+.toast-message {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 17px;
+}
+
+#toast-container .ngx-toastr {
+  padding: 15px;
+  background-image: none !important;
+}
+
+.dialog-backdrop-blur {
+	background-color: rgba(40, 44, 52, 0.6);
+	backdrop-filter: blur(5px);
+}
+
+.custom-dialog {
+	background: var(--bg-medium);
+	border-radius: 5px;
+	width: calc(100% - 20px);
+	height: 100%;
+	animation: dialog-enter-animation 0.5s ease;
+	overflow: hidden;
+}

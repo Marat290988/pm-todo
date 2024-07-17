@@ -1,0 +1,61 @@
+.todo-item-content {
+
+  form {
+    display: flex;
+    gap: 4px;
+
+    .todo-item-title {
+      flex-grow: 1;
+
+      input {
+        width: 100%;
+        background-color: var(--bg-medium);
+        border: 1px solid #fff0;
+        outline: none;
+        color: var(--color);
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+    }
+
+    .todo-item-title.error input {
+      border-color: var(--primary-warn);
+    }
+  
+    .todo-item-completed {
+      max-width: 30px;
+      min-width: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .todo-item-buttons {
+      max-width: 80px;
+      min-width: 80px;
+      display: flex;
+      gap: 2px;
+
+    }
+
+    .button-container {
+      min-width: 20px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      &.disabled {
+        cursor: default;
+      }
+
+      .button-svg-icon {
+        width: 100%;
+      }
+
+      ::ng-deep img {
+        width: 100%;
+      }
+    }
+  }
+
+}

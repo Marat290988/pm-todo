@@ -1,0 +1,42 @@
+@import 'mixins';
+
+.input-content {
+  @include flex-direction-gap(column, 8px);
+
+  &__wrapper {
+    @include flex-direction-gap(row, 8px);
+
+    .cutom-input {
+      border: none;
+      flex-grow: 1;
+      background-color: inherit;
+      outline: none;
+      color: var(--color);
+    }
+
+    .icon-wrapper {
+      min-width: 20px;
+      max-width: 20px;
+      max-height: 20px;
+      min-height: 20px;
+    }
+
+    .icon-pointer {
+      cursor: pointer;
+    }
+
+  }
+
+  .input-content__error {
+    min-height: 13px;
+    max-height: 13px;
+    width: 100%;
+    display: flex;
+
+    &-message {
+      @include size-weight-line(10px, 400, 10px);
+      color: var(--primary-warn);
+      font-family: 'Proxima Nova';
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<img
+	class="custom-icon"
+	[src]="iconData.src"
+	[alt]="iconData.alt"
+	*ngIf="icon as iconData"
+	[ngStyle]="{
+		maxWidth: maxWidth + 'px'
+	}"
+/>

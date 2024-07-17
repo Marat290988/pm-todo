@@ -1,0 +1,39 @@
+@if(todoForm){
+  <div class="todo-item-content">
+    <form [formGroup]="todoForm">
+      <div class="button-container" [routerLink]="['/todo', item.id]">
+        <app-svg-icon iconName="open" class="button-svg-icon"></app-svg-icon>
+      </div>
+      <div 
+        class="todo-item-title"
+        [ngClass]="[todoForm.get('title')?.errors ? 'error' : '']"
+      >
+        <input formControlName="title">
+      </div>
+      <div 
+        class="todo-item-completed"
+      >
+        <input type="checkbox" formControlName="completed" >
+      </div>
+      <div class="todo-item-buttons">
+        <div 
+          class="button-container"
+          [ngClass]="[todoForm.disabled || todoForm.status !== 'VALID' ? 'disabled' : '']"
+          (click)="save()"
+        >
+          <app-svg-icon iconName="save" class="button-svg-icon"></app-svg-icon>
+        </div>
+        <div 
+          class="button-container"
+          [ngClass]="[!todoForm.disabled ? 'disabled' : '']"
+          (click)="todoForm.enable()"
+        >
+          <app-svg-icon iconName="edit" class="button-svg-icon"></app-svg-icon>
+        </div>
+        <div class="button-container" (click)="remove.emit(item.id)">
+          <app-svg-icon iconName="remove" class="button-svg-icon"></app-svg-icon>
+        </div>
+      </div>
+    </form>
+  </div>
+}

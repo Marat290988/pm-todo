@@ -1,0 +1,42 @@
+@import 'mixins';
+
+button {
+  cursor: pointer;
+  border: 1px solid #00000000;
+  padding: 0 16px;
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.size-44 {
+  @include size-weight-line(16px, 400, 19.2px);
+  letter-spacing: -0.8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border-radius: 10px;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.width-content {
+  width: fit-content;
+}
+
+.primary {
+  background-color: var(--bg-medium);
+  color: var(--color);
+
+  &:disabled {
+    background-color: var(--bg-disabled);
+  }
+}
+
+:host ::ng-deep .icon-spinner img {
+  width: 36px;
+}

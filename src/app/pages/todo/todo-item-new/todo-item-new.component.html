@@ -1,0 +1,13 @@
+<form [formGroup]="formNewTodo">
+  <div class="new-todo-content">
+    <div class="input-wrapper">
+      <input 
+        formControlName="title" 
+        [ngClass]="[formNewTodo.get('title')?.errors && formNewTodo.get('title')?.touched ? 'error' : '']"
+      >
+    </div>
+    <button class="new-todo-button" (click)="saveTodo()" [disabled]="formNewTodo.status !== 'VALID'">
+      Добавить
+    </button>
+  </div>
+</form>
