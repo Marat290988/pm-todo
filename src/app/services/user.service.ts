@@ -37,6 +37,7 @@ export class UserService {
   logout() {
     this.setUser(null);
     this._router.navigate(['auth']);
+    this._setLocalStorageUser(null)
   }
 
   private _setLocalStorageUser(user: IUser | null): void {
