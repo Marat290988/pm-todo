@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { TodoService } from "../../../../services/todo.service";
-import { BehaviorSubject, Subject, takeUntil } from "rxjs";
+import { BehaviorSubject, catchError, of, Subject, takeUntil } from "rxjs";
 import { TodoItem } from "../../../../interfaces/todoitem.interface";
 
 @Component({
@@ -69,6 +69,9 @@ import { TodoItem } from "../../../../interfaces/todoitem.interface";
             </div>
           </div>
         </ng-container>
+        <ng-container *ngIf="hasError$ | async">
+          Некорректные параметры страницы
+        </ng-container>
     </div>
 
   `,
@@ -127,15 +130,25 @@ export class TodoItemPageComponent implements OnInit, OnDestroy {
   takeUntilSubject = new Subject();
   todoItem = new BehaviorSubject<TodoItem | null>(null);
   todoItem$ = this.todoItem.asObservable();
+  hasError$ = new Subject<boolean>();
 
   ngOnInit(): void {
     this._route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
         this._todoService.getTodoById(id)
-          .pipe(takeUntil(this.takeUntilSubject))
+          .pipe(
+            takeUntil(this.takeUntilSubject),
+            catchError(err => {
+              return of(null);
+            })
+          )
           .subscribe(todo => {
-            this.todoItem.next(todo);
+            if (todo) {
+              this.todoItem.next(todo);
+            } else {
+              this.hasError$.next(true);
+            }
           })
       }
     });
